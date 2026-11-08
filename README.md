@@ -1,32 +1,28 @@
-# React + TypeScript + Vite
+# HRIS 인사 관리 시스템 구현 중
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+피그마로 구현된 와이어프레임을 일일히 코딩하기 힘들다고 판단하여
+피그마 플러그인을 사용하여 빠르게 react와 css를 출력했습니다.
 
-Currently, two official plugins are available:
+교수님이 해당 부분을 질문하시는 경우, 플러그인과 AI를 일정 부분 사용했다고 인정해야 될 것 같습니다....
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+((데이터연동이 중요한거니 괜찮다고 믿고 싶습니다))
 
-## React Compiler
+## 관리자/사원 구분
+사이드바에서 선택 메뉴를 다르게 배치함으로써 차이 지정
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+--------임시데이터------------
+관리자 계정
+id : admin
+passwd : 12345
 
-## Expanding the Oxlint configuration
+사원 계정
+id : user
+passwd : 12345
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+## src/api 폴더
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+각 사이드바 메뉴에 따른 api를 설계했습니다(잘 설계된거지 모르겠네요)
+
+평가관리 부분이랑 문서 결재 부분이 약간 비뚤게 출력됩니다.흠.제가 시간이 된다면 최대한 수정해보겠습니다.
+

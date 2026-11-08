@@ -1,3 +1,5 @@
+import type { JSX } from "react/jsx-runtime";
+
 export const DashboardWelcomeSection = (): JSX.Element => {
   return (
     <section

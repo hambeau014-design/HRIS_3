@@ -21,7 +21,6 @@ export type SalaryListResponse = {
   size: number;
 };
 
-// 딜레이 시뮬레이션 함수
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // SAL-01: 급여 대상자 목록 조회

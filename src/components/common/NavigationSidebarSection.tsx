@@ -6,6 +6,7 @@ type NavigationItem = {
   path: string;
   iconClassName: string;
   iconSources: string[];
+  roles: string[]; //각 메뉴별 접근 가능한 권한 추가
 };
 
 const navigationItems: NavigationItem[] = [
@@ -17,6 +18,7 @@ const navigationItems: NavigationItem[] = [
       "/img/dashboard/dashboardvector-3.svg",
       "/img/dashboard/vector-3.svg",
     ],
+    roles: ["ADMIN", "USER"],
   },
   {
     label: "인사 관리",
@@ -27,18 +29,21 @@ const navigationItems: NavigationItem[] = [
       "/img/dashboard/vector-5.svg",
       "/img/dashboard/vector-6.svg",
     ],
+    roles: ["ADMIN", "USER"],
   },
   {
     label: "급여 관리",
     path: "/salary",
     iconClassName: "relative w-6 h-6",
     iconSources: ["/img/dashboard/vector-7.svg", "/img/dashboard/vector-8.svg"],
+    roles: ["ADMIN"],
   },
   {
     label: "조직 관리",
     path: "/organization",
     iconClassName: "relative w-6 h-6",
     iconSources: ["/img/dashboard/vector-9.svg", "/img/dashboard/vector-10.svg"],
+    roles: ["ADMIN"],
   },
   {
     label: "평가관리",
@@ -49,12 +54,14 @@ const navigationItems: NavigationItem[] = [
       "/img/dashboard/vector-12.svg",
       "/img/dashboard/vector-13.svg",
     ],
+    roles: ["ADMIN", "USER"],
   },
   {
     label: "전자 문서",
     path: "/document",
     iconClassName: "relative w-6 h-6",
     iconSources: ["/img/dashboard/vector-14.svg", "/img/dashboard/vector-15.svg"],
+    roles: ["ADMIN", "USER"],
   },
 ];
 
@@ -135,6 +142,14 @@ const renderIcon = (item: NavigationItem) => {
 export const NavigationSidebarSection = (): JSX.Element => {
   const [message, setMessage] = useState("");
 
+
+  const userRole = localStorage.getItem("user_role") || "USER";
+
+  
+  const filteredNavigationItems = navigationItems.filter((item) =>
+    item.roles.includes(userRole)
+  );
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setMessage("");
@@ -170,7 +185,8 @@ export const NavigationSidebarSection = (): JSX.Element => {
         className="inline-flex flex-col items-start gap-2 relative flex-[0_0_auto]"
         aria-label="워크스페이스"
       >
-        {navigationItems.map((item) => (
+        {/* 💡 4. 필터링된 메뉴 배열을 순회하며 렌더링 */}
+        {filteredNavigationItems.map((item) => (
           <NavLink
             key={item.label}
             to={item.path}
@@ -192,11 +208,9 @@ export const NavigationSidebarSection = (): JSX.Element => {
         ))}
       </nav>
 
-     
       <div className="flex flex-col items-start pt-[31px] pb-[30px] px-0 relative self-stretch w-full">
         <div className="relative self-stretch w-full h-px bg-[#20283a]" />
       </div>
-
 
       <section
         className="flex flex-col h-[153px] items-start p-[13px] relative self-stretch w-full rounded-[14px] border border-solid border-[#202a40] [background:radial-gradient(50%_50%_at_37%_71%,rgba(17,199,221,0.12)_0%,rgba(17,199,221,0)_45%),linear-gradient(0deg,rgba(17,24,43,1)_0%,rgba(17,24,43,1)_100%)]"
@@ -275,7 +289,6 @@ export const NavigationSidebarSection = (): JSX.Element => {
         </form>
       </section>
 
-      
       <div className="flex flex-col h-[210px] items-start justify-end relative self-stretch w-full">
         <button
           type="button"

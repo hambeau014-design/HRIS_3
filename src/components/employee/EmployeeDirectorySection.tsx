@@ -291,7 +291,7 @@ export const EmployeeDirectorySection = ({
               <div className="flex h-full w-full items-center justify-center text-sm text-[#687990]">
                 조회된 직원이 없습니다.
               </div>
-            ) : filteredEmployees.map((employee, index) => {
+            ) : filteredEmployees.map((employee) => {
               const isChecked = selectedEmployees.includes(employee.id);
               const isActive = selectedEmployeeId === employee.id;
 
